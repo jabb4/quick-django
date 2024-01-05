@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% load static %}
+{% block extra_stylesheets %}
+<link rel="stylesheet" href="{% static 'styles/core/edit_user.css' %}">
+{% endblock extra_stylesheets %}
+{% block content %}
+
+<div id="main">
+    {% if delete_user_page %}
+    <div id="delete_user">
+        <div id="delete_user_title"><p>Are you sure you want to delete your account?</p></div>
+        <form id="delete_user_form" class="form_form" action="" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form_field">{{field}}</div>
+            {% endfor %}
+            <input class="form_submit" type="submit" value="Delete Account">
+        </form>
+    </div>
+    {% else %}
+    <div id="edit_user">
+        <div id="edit_user_buttons">
+            <div class="edit_user_button">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input id="delete_user_button" type="submit" name="delete_user" value="Delete Account">
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+
+{% endblock content %}

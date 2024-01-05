@@ -1,0 +1,46 @@
+body {
+    background-color: #000000;
+    font-family: 'Roboto Mono', monospace;
+    color: #fff;
+}
+
+p {
+    margin: 0;
+    color: #fff;
+}
+
+a {
+    font-style: normal;
+    text-decoration: none;
+}
+
+a:link {
+    color: #fff;
+}
+
+a:visited {
+    color: #fff;
+}
+
+a:hover {
+    color: #fff;
+}
+
+a:active {
+    color: #fff;
+}
+
+button {
+    height: 50px;
+    width: auto;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    background-color: #fff;
+    padding: 3px 20px;
+    box-sizing: border-box;
+
+    font-size: 16px;
+    color: #000;
+}

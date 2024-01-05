@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'styles/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/message.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+    {% block extra_stylesheets %}
+    {% endblock extra_stylesheets %}
+    <title>Document</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+    {% block content %}
+    {% endblock content %}
+    <input id="remove_message_checkbox" type="checkbox">
+    <div id="message">
+        {% if error_message %}
+        <div id="error_message" class="message">
+            <p id="message_text">{{error_message}}</p>
+            <label for="remove_message_checkbox"><i id="message_close_button" class="fa-solid fa-xmark"></i></label>
+        </div>
+        {% elif success_message %}
+        <div id="success_message" class="message">
+            <p id="message_text">{{success_message}}</p>
+            <label for="remove_message_checkbox"><i id="message_close_button" class="fa-solid fa-xmark"></i></label>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

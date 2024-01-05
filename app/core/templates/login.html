@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% load static %}
+{% block extra_stylesheets %}
+<link rel="stylesheet" href="{% static '/styles/core/user_login.css' %}">
+{% endblock extra_stylesheets %}
+{% block content %}
+<div id="main">
+    <div id="user_login">
+        <div id="login_title"><p>Login</p></div>
+        <form id="user_login_form" class="form_form" action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form_field">{{field}}</div>
+            {% endfor %}
+            <div class="form_submit">
+                <input type="submit" name="login" value="Login">
+            </div>
+        </form>
+        <div id="extra_links">
+            <div class="extra_links_text"><a class="extra_links_link" href="">Forgot your password?</a></div>
+        </div>
+    </div>
+</div>
+{% endblock content %} 

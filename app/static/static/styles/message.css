@@ -1,0 +1,46 @@
+#message {
+    position: fixed;
+    bottom: 40px;
+    right: 50px;
+}
+
+.message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 7px 15px 7px 25px;
+    box-sizing: border-box;
+}
+
+#error_message {
+    background-color: red;
+    border-radius: 10px;
+}
+
+#success_message {
+    background-color: green;
+    border-radius: 10px;
+}
+
+#message_text {
+    color: #000;
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: 10px;
+}
+
+#remove_message_checkbox {
+    display: none;
+}
+
+#message_close_button {
+    cursor: pointer;
+    color: #000;
+    font-size: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#remove_message_checkbox:checked+#message {
+    display: none;
+}

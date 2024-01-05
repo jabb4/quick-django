@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% load static %}
+{% block extra_stylesheets %}
+{% endblock extra_stylesheets %}
+{% block content %}
+<div id="main">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+        {{field}}
+        {% endfor %}
+        <input type="submit" title="register">
+    </form>
+</div>
+{% endblock content %} 
