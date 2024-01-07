@@ -9,7 +9,7 @@ services:
     volumes:
       - static-data:/vol/web
     environment:
-      - DB_HOST=db
+      - DB_HOST=database
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}

@@ -1,6 +1,5 @@
 from .validate_password import testCurrentPassword
-from .validate_email import testUsernameExistence
-
+from .validate_username import testUsernameExistence
 
 def testEditUser(request, email, password):
     if testCurrentPassword(request=request, password=password):
