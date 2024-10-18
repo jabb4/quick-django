@@ -133,3 +133,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Authentication and user
 AUTHENTICATION_BACKENDS = ["core.auth_backend.AuthBackend"]
 AUTH_USER_MODEL = 'core.User'
+
+
+
+# Celery settings
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
+

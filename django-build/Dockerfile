@@ -1,11 +1,11 @@
 FROM python:3.10-bullseye
-LABEL maintainer="pyer"
+LABEL maintainer="Jabba"
 
 ENV PYTHONUNBUFFERED 1
 
-COPY ./requirements.txt /requirements.txt
+COPY ./django-build/requirements.txt /requirements.txt
 COPY ./app /app
-COPY ./scripts /scripts
+COPY ./django-build/scripts /scripts
 
 WORKDIR /app
 EXPOSE 8000
