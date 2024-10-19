@@ -1,5 +1,7 @@
 Django
+djangorestframework
 psycopg2
 uWSGI
 celery
+django-celery-results
 redis

@@ -21,7 +21,7 @@ with open("app/settings.py", "r") as file:
    settings = file.readlines()
    for line in enumerate(settings):
        if "INSTALLED_APPS = [\n" == line[1]:
-        settings.insert(line[0]+1,'    "test1",\n')
+        settings.insert(line[0]+1,f'    "{app_name}",\n')
         with open("app/settings.py", "w") as file:
             file.write("")
             file.writelines(settings)
@@ -29,6 +29,23 @@ with open("app/settings.py", "r") as file:
 ## Create templates dir
 if not Path(f"{app_name}/templates").exists():
     Path(f"{app_name}/templates").mkdir()
+
+## Create tasks.py file
+with open(f"{app_name}/tasks.py", "w") as file:
+   file.writelines([
+       "from celery import shared_task\n",
+       "# from time import sleep\n",
+       "\n",
+       "# Example for function to do in background",
+       '# @shared_task(bind=True)\n',
+       "# def example_task(self):\n",
+       "#     print(self.request.id)\n",
+       "#     for i in range(1,101):",
+       "#        print(i)\n",
+       "#        self.update_state(state='PROGRESS', meta={'current': i, 'total': 100})\n",
+       "#        sleep(1)\n",
+       '#     return "Done"\n',
+    ])
 
 ## Create urls.py file
 with open(f"{app_name}/urls.py", "w") as file:

@@ -27,6 +27,8 @@ ALLOWED_HOSTS.extend(
 INSTALLED_APPS = [
     "core",
 
+    "rest_framework",
+    "django_celery_results",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,5 +140,8 @@ AUTH_USER_MODEL = 'core.User'
 
 # Celery settings
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND")
-
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = os.environ.get("TIMEZONE")

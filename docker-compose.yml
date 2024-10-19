@@ -8,15 +8,15 @@ services:
     volumes:
       - static-data:/vol/web
     environment:
-      - DB_HOST=database
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - SECRET_KEY=${SECRET_KEY}
-      - DEBUG=${DEBUG}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      DB_HOST: database
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY_DJANGO}
+      DEBUG: ${DEBUG}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      CELERY_BROKER_URL: redis://redis:6379/0
+      TIMEZONE: ${TIMEZONE}
     depends_on:
       - database
 
@@ -27,8 +27,15 @@ services:
       dockerfile: ./celery-build/Dockerfile
     restart: unless-stopped
     environment:
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      DB_HOST: database
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY_CELERY}
+      DEBUG: ${DEBUG}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      CELERY_BROKER_URL: redis://redis:6379/0
+      TIMEZONE: ${TIMEZONE}
     depends_on:
       - django
       - redis
@@ -45,9 +52,9 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=${DB_NAME}
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
 
   proxy:
     container_name: proxy
@@ -61,9 +68,9 @@ services:
     volumes:
       - static-data:/vol/static
     environment:
-      - APP_HOST=django
-      - APP_PORT=8000
-      - LISTEN_PORT=8888
+      APP_HOST: django
+      APP_PORT: 9000
+      LISTEN_PORT: 8000
 
 volumes:
   postgres-data:

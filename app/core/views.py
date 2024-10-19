@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
 
 import uuid
@@ -9,6 +9,12 @@ from .models import User
 from .validation.validate_username import testUsernameExistence
 from .validation.validate_password import testCurrentPassword, testNewPassword
 
+from .tasks import example_task
+
+## This is an example view that tests the background task
+def example(request):
+    example_task.delay()
+    return HttpResponse("Example page")
 
 def login_view(request):
     page = "login"
