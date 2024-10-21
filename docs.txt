@@ -1,5 +1,0 @@
-Basic rest api setup and functionality: https://www.youtube.com/watch?v=cJveiktaOSQ&t=1s
-
-celery setup and basic functionality:
-    - https://www.youtube.com/watch?v=cJveiktaOSQ&t=1s
-    - https://www.youtube.com/watch?v=cJveiktaOSQ&t=1s
