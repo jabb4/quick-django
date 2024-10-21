@@ -1,6 +1,7 @@
 celery
 django-celery-results
-Django
+django
 djangorestframework
+djfernet
 psycopg2
 redis

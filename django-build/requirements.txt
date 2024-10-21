@@ -1,5 +1,6 @@
-Django
+django
 djangorestframework
+djfernet
 psycopg2
 uWSGI
 celery

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 import uuid
 
 from .forms import *
-from .models import User
+from .models import User, APIKey
 
 from .validation.validate_username import testUsernameExistence
 from .validation.validate_password import testCurrentPassword, testNewPassword
@@ -115,12 +115,31 @@ def account_view(request):
     if not logged_in:
         return redirect("login")
 
+    api_keys = APIKey.objects.filter(user=user)
+
     delete_user_page = False
     form = None
 
 
 ### Check if method is POST ###
     if request.method == "POST":
+
+### API Keys ###
+    ## New API Key ##
+        try:
+            if request.POST["new_api_key"]:
+                APIKey.objects.create(user=user, api_key=str(uuid.uuid4()).replace("-", ""))
+                return redirect("account")
+        except KeyError:
+            pass
+    
+    ## Delete API Key ##
+        try:
+            if request.POST["delete_api_key"]:
+                APIKey.objects.get(user=user, id=request.POST["api_key_id"]).delete()
+                return redirect("account")
+        except KeyError:
+            pass
 
 ### Delete User ###
         try:
@@ -152,6 +171,6 @@ def account_view(request):
 
     context = {
         "page": page, "user": user, "logged_in": logged_in, "error_message": error_message, "success_message": success_message,
-        "form": form, "delete_user_page": delete_user_page
+        "form": form, "delete_user_page": delete_user_page, "api_keys": api_keys,
     }
     return render(request, "account.html", context=context)
