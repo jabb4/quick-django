@@ -4,7 +4,7 @@ from django.contrib.auth.base_user import BaseUserManager
 class UserManager(BaseUserManager):
     def create_user(self, username, password=None):
         if not username:
-            raise ValueError("U need a username")
+            raise ValueError("User must have a username.")
         user = self.model(username=username)
         user.set_password(password)
         user.save(using=self._db)
